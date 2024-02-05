@@ -6,13 +6,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const GalleryCard = () => {
+const GalleryCard = ({url, title}) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
+        sx={{ height: 240 }}
+        image={url}
+        component="img"
+        title={title}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

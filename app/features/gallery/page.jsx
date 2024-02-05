@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { useGetTopImagesQuery, useSearchImagesQuery } from './apiGallery';
-import ImageGallery from '@/app/components/ImageGallery';
+import ImageGallery from '../../components/ImageGallery';
 
 const GalleryPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
