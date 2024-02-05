@@ -1,32 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import useDebounce from '../hooks/useDebounce';
 import SearchIcon from '@mui/icons-material/Search';
-import Typography from '@mui/material/Typography';
 import Input from '@mui/material/Input';
-import { styled } from '@mui/material';
-
+import { alpha, styled } from '@mui/material';
+import useDebounce from '../hooks/useDebounce';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25)
-  },
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: '100%',
   [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
     width: 'auto'
   }
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
   height: '100%',
   position: 'absolute',
   pointerEvents: 'none',
+  top: 1,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -37,12 +30,9 @@ const StyledInput = styled(Input)(({ theme }) => ({
   '& .MuiInput-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(2.5)})`,
     transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
+    width: '100%'
   },
 }));
 
@@ -51,9 +41,9 @@ const SearchBar = ({ onSearch }) => {
   const debouncedInput = useDebounce(input, 500);
 
   useEffect(() => {
-    if (debouncedInput) {
+    // if (debouncedInput) {
       onSearch(debouncedInput);
-    }
+    // }
   }, [debouncedInput, onSearch]);
 
   return (

@@ -1,35 +1,42 @@
 'use client'
 import React, { useState } from 'react';
-import { useGetTopImagesQuery, useSearchImagesQuery } from './apiGallery';
-import ImageGallery from '../../components/ImageGallery';
+import { useSearchImagesQuery, useGetTopImagesQuery } from './apiGallery';
+import GalleryGridView from '../../components/GalleryGridView';
+import SearchBar from '../../components/SearchBar';
+import Stack from '@mui/material/Stack';
+import DisplayOptions from '../../components/DisplayOptions';
+import GalleryListView from '../../components/GalleryListView';
 
 const GalleryPage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const { data: topImages, isLoading, error } = useGetTopImagesQuery();
-  const {
-    data: searchResults,
-    isLoading: isSearchLoading,
-    isError: isSearchError
-  } = useSearchImagesQuery(searchQuery, {
-    skip: !searchQuery.length
-  });
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
+  // input text
+  const [searchTerm, setSearchTerm] = useState('');
+  const handleSearch = (term) => {
+    setSearchTerm(term);
   };
 
-  function renderResult() {
-    if (isLoading) return <p>Loading....</p>
-    if (error) return <p>{JSON.stringify(error)}</p>
-    if (topImages.data.length) {
-      return <ImageGallery images={topImages.data} />
-    }
-    return null;
-  }
+  // display -> list/grid
+  const [displayType, setDisplayType] = useState('grid');
+  const handleDisplayType = (event, newMode) => {
+    setDisplayType(newMode);
+  };
+
+  // get images
+  const { data, isLoading, error } = useSearchImagesQuery(searchTerm);
+
 
   return (
     <div>
-      {renderResult()}
+      <Stack direction="row" justifyContent="space-between">
+       <SearchBar onSearch={handleSearch} />
+        {data?.data?.length > 0 && 
+          <DisplayOptions value={displayType} onChange={handleDisplayType} />
+        }
+      </Stack>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
+      
+      {displayType === 'list' && data && <GalleryListView data={data.data} />}
+      {displayType === 'grid' && data && <GalleryGridView data={data.data} />}
     </div>
   )
 };

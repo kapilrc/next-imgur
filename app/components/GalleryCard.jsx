@@ -6,27 +6,29 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const GalleryCard = ({url, title}) => {
+const GalleryCard = ({image, title}) => {
+  const {link, type, description} = image;
+  // image?.type?.includes('video') || 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 240 }}
-        image={url}
-        component="img"
+        image={link}
+        component={type?.includes('video') ? "video" : "img"}
         title={title}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
+        {title && <Typography gutterBottom component="div">
+          {title}
+        </Typography>}
+        {description && <Typography variant="body2">
+         {description.slice(0, 50)}
+        </Typography>}
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Typography variant="body2" color="text.secondary">
+          posted on: today //wip
+        </Typography>
       </CardActions>
     </Card>
   );
