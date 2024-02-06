@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import Input from '@mui/material/Input';
 import { alpha, styled } from '@mui/material';
-import useDebounce from '../hooks/useDebounce';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentQuery, setQuery } from '../redux/slices/searchSlice';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -26,25 +27,21 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInput = styled(Input)(({ theme }) => ({
-  color: 'inherit',
   '& .MuiInput-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(2.5)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%'
+    paddingLeft: theme.spacing(4),
   },
 }));
 
-const SearchBar = ({ onSearch }) => {
-  const [input, setInput] = useState('');
-  const debouncedInput = useDebounce(input, 500);
+const SearchBar = ({ placeholder = "Search for images...", onSearch }) => {
+  const dispatch = useDispatch();
+  const inputValue = useSelector(selectCurrentQuery);
+
+  const [input, setInput] = useState(inputValue);
 
   useEffect(() => {
-    // if (debouncedInput) {
-      onSearch(debouncedInput);
-    // }
-  }, [debouncedInput, onSearch]);
+    dispatch(setQuery(input));
+  }, [dispatch, input]);
 
   return (
     <Search>
@@ -52,8 +49,8 @@ const SearchBar = ({ onSearch }) => {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInput
-        value={input}
-        placeholder="Search for images..."
+        value={inputValue}
+        placeholder={placeholder}
         onChange={(e) => setInput(e.target.value)}
         inputProps={{ 'aria-label': 'search' }}
       />
