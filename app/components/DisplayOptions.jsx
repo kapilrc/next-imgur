@@ -7,7 +7,6 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 
 const DisplayOptions = ({ value, onChange }) => {
-  console.log(value);
   return (
     <Stack direction="row" justifyContent="space-between" spacing={1}>
       <IconButton onClick={(e) => onChange(e, "list")}>
