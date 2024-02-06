@@ -49,4 +49,10 @@ home -> go to gallery -> see the top images of the week
 
 ![Desktop view](https://github.com/kapilrc/next-imgur/blob/master/docs/Desktop.png)
 
+
+
 ![Mobile view search result](https://github.com/kapilrc/next-imgur/blob/master/docs/mobile-search-by-key.png)
+
+
+
+![List view](https://github.com/kapilrc/next-imgur/blob/master/docs/list%20view.png)
