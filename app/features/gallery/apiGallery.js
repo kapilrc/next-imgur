@@ -6,11 +6,11 @@ export const apiGallery = apiClient.injectEndpoints({
   reducerPath: 'apiGallery',
   endpoints: (builder) => ({
     getTopImages: builder.query({
-      query: (q) => `/gallery/top/week?q=${q}`,
+      query: (q) => `/gallery/top/week`
     }),
-    // searchImages: builder.query({
-    //   query: (query) => `/gallery/search?q=${query}`,
-    // }),
+    searchImages: builder.query({
+      query: (query) => `/gallery/search?q=${query}`,
+    }),
     overrideExisting: false,
   }),
 });
