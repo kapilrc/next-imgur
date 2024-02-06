@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) assignment to 
+- Display top images of the week
+- Search imgur gallery by keyword
 
 ## Getting Started
 
-First, run the development server:
+create .env.local file in the root folder
+
+add environment variables as emailed 
+
+NEXT_PUBLIC_IMGUR_BASEURL=<api url>
+NEXT_PUBLIC_IMGUR_CLIENT_ID=<client id.
+NEXT_PUBLIC_IMGUR_CLIENT_SECRET=<client secret>
+
+Now, install dependencies
+
+```bash
+npm install
+# or
+yarn
+```
+
+run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see homepage.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+In the default navigation `app/page.tsx`, nothing is added (to showcase the routing on top navbar) 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### dependencies added
 
-## Learn More
+- redux/toolkit
+- react-redux
+- material ui
+- moment
 
-To learn more about Next.js, take a look at the following resources:
+### journey tested
+home -> go to gallery -> see the top images of the week
+- display grid/list
+- search for anything (the input state is maintained) when you navigate back and forth from the navbar
+- search component can also be place on the navbar (commented)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Screenshots
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Desktop view](https://github.com/kapilrc/next-imgur/blob/master/docs/Desktop.png)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Mobile view search result](https://github.com/kapilrc/next-imgur/blob/master/docs/mobile-search-by-key.png)
