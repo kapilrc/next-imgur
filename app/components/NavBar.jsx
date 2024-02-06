@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import MuiToolbar from '@mui/material/Toolbar';
 import { styled } from '@mui/material';
+import SearchBar from './SearchBar';
 
 const Toolbar = styled(MuiToolbar)(({ theme }) => ({
   '>a': {
@@ -32,6 +33,8 @@ const Navbar = () => {
             Gallery{' '}
           </Link>
           <Box sx={{ flexGrow: 1 }} />
+          {/* The search component will also work here */}
+          {/* <SearchBar placeholder="Search images..." /> */}
         </Toolbar>
       </Container>
     </AppBar>
