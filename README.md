@@ -28,18 +28,24 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see homepage.
+check your ip address of your machine
+
+```bash
+  ifconfig
+```
+
+Open [http://192.168.1.39:3000](http://<ipaddress>:3000) with your browser to see homepage.
 
 In the default navigation `app/page.tsx`, nothing is added (to showcase the routing on top navbar) 
 
-### dependencies added
+### Dependencies
 
-- redux/toolkit
-- react-redux
-- material ui
-- moment
+- redux/toolkit - store setup, rtk query
+- react-redux - to let react components read data from a Redux store, and dispatch actions to the store to update state
+- material ui - React component library
+- moment - to format date
 
-### journey tested
+### Journeys
 home -> go to gallery -> see the top images of the week
 - display grid/list
 - search for anything (the input state is maintained) when you navigate back and forth from the navbar
