@@ -34,14 +34,12 @@ const GalleryPage = () => {
   useEffect(() => {
     // Update image gallery state default to top/week
     !query &&  dispatch(setGallery(topImages?.data));
-    // !query && setImageGallery(topImages?.data)
   }, [topImages, query, dispatch]);
 
   useEffect(() => {
     // Update image gallery state post search
-    // setImageGallery(searchResults?.data);
-    dispatch(setGallery(searchResults?.data));
-  }, [searchResults, dispatch]);
+    query?.length > 0 && dispatch(setGallery(searchResults?.data));
+  }, [searchResults, dispatch, query]);
 
   return (
     <div>
@@ -51,10 +49,10 @@ const GalleryPage = () => {
           <DisplayOptions value={displayType} onChange={handleDisplayType} />
         }
       </Stack>
-      {!query && (isLoading || searchLoading) && <GalleryLoading />}
+      {isLoading || searchLoading && <GalleryLoading />}
       {/* {error && <p>Error: {error.message}</p>} */}
 
-      {!query || (!searchLoading && !gallery?.length) && (
+      {debouncedInput && !searchLoading && !gallery?.length && (
         <p>No results found!</p>
       )}
       

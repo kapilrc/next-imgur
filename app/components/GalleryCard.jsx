@@ -13,7 +13,10 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const CardContent = styled(MuiCardContent)(({ theme }) => ({
-  minHeight: 108
+  minHeight: 108,
+  [theme.breakpoints.down('sm')]: {
+    minHeight: 130,
+  }
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
